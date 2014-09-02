@@ -1,0 +1,12 @@
+{
+  "id": "nodebb-plugin-upvote-post",
+  "name": "Upvote Post",
+  "description": "Send post request on action:post.upvote",
+  "url": "https://github.com/GAWMiners/nodebb-plugin-upvote-post",
+  "library": "./index.js",
+  "hooks": [
+    { "hook": "action:post.upvote", "method": "upvote" },
+    { "hook": "filter:admin.header.build", "method": "addNavigation" }
+  ],
+  "templates": "./templates"
+}

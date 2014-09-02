@@ -1,0 +1,25 @@
+{
+  "name": "nodebb-plugin-upvote-post",
+  "version": "0.0.0",
+  "description": "Send a post request on upvote",
+  "main": "index.js",
+  "dependencies": {
+    "request": "~2.40.0"
+  },
+  "license": "MIT",
+  "keywords": [
+    "nodebb",
+    "plugin",
+    "upvote",
+    "post"
+  ],
+  "author": "Evan Lucas <evan@btc.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GAWMiners/nodebb-plugin-upvote-post"
+  },
+  "homepage": "https://github.com/GAWMiners/nodebb-plugin-upvote-post",
+  "bugs": {
+    "url": "https://github.com/GAWMiners/nodebb-plugin-upvote-post/issues"
+  }
+}
