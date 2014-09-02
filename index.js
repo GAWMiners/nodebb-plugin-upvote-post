@@ -69,8 +69,8 @@ Upvote.upvote = function(data) {
 
 Upvote.addNavigation = function(header, cb) {
   header.plugins.push({
-    route: '/admin/upvote'
-  , class: 'fa-chevron-up'
+    route: '/upvote'
+  , icon: 'fa-chevron-up'
   , name: 'Upvotes'
   })
   cb(null, header)
