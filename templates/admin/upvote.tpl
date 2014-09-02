@@ -2,7 +2,7 @@
 
 <hr>
 
-<form>
+<form class="upvote-form">
   <p>Configure the POST request options for when a post is upvoted</p>
   <fieldset>
     <div class="row">
