@@ -13,9 +13,10 @@ Upvote.init = function(app, mw, controllers, cb) {
 }
 
 Upvote.upvote = function(data) {
-  var url = meta.config('upvote:apiUrl')
-  var headerField = meta.config('upvote:headerField')
-  var token = meta.config('upvote:apiToken')
+  var url = meta.config['upvote:apiUrl']
+  var headerField = meta.config['upvote:headerField']
+  var token = meta.config['upvote:apiToken']
+
   if (!url) {
     winston.error('Missing upvote api url')
     return
