@@ -47,7 +47,7 @@ Upvote.upvote = function(data) {
       if (email) {
         var d = {
           pid: data.pid
-        , uid: uid
+        , uid: data.uid
         , email: email
         }
         opts.qs = d
@@ -58,7 +58,7 @@ Upvote.upvote = function(data) {
             winston.error('received status code >= 400'
                         , body
                         , data.pid
-                        , uid
+                        , data.uid
                         , res.statusCode)
           }
         })
