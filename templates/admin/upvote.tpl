@@ -25,12 +25,39 @@
         </div>
       </div>
     </div>
-    <button class="btn btn-lg btn-primary" id="save">Save</button>
+
   </fieldset>
+
+  <p>Configure the Redis publish options for when a post is upvoted</p>
+  <fieldset>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="form-group">
+          <label for="upvote:redisHost">Redis Host</label>
+          <input type="text" id="upvote:redisHost" data-field="upvote:redisHost" title="Redis Host" class="form-control" placeholder="Host of your redis instance">
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <div class="form-group">
+          <label for="upvote:redisPort">Redis Port</label>
+          <input type="text" id="upvote:redisPort" data-field="upvote:redisPort" title="Redis Port" class="form-control" placeholder="Port of your redis instance">
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <div class="form-group">
+          <label for="upvote:redisPassword">Redis Password</label>
+          <input type="text" id="upvote:redisPassword" data-field="upvote:redisPassword" title="Redis Password" class="form-control" placeholder="Password of your redis instance" autocomplete="off">
+        </div>
+      </div>
+    </div>
+  </fieldset>
+
+  <button class="btn btn-lg btn-primary" id="save">Save</button>
 </form>
 
+
 <script>
-  require(['forum/admin/settings'], function(Settings) {
+  require(['admin/settings'], function(Settings) {
     Settings.prepare()
   })
 </script>

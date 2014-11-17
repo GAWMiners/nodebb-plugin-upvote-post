@@ -1,15 +1,33 @@
 var request = require('request')
+  , redis = require('redis')
   , User = module.parent.require('./user')
   , Posts = module.parent.require('./posts')
   , meta = module.parent.require('./meta')
   , winston = module.parent.require('winston')
   , Upvote = {}
+  , publishClient;
 
 module.exports = Upvote
 
-Upvote.init = function(app, mw, controllers, cb) {
-  require('./lib/routes')(app, mw, controllers)
+Upvote.init = function(params, cb) {
+  require('./lib/routes')(params.router, params.middleware, params.controllers)
+
+  setupPublish();
+
   cb()
+}
+
+function setupPublish() {
+  var host = meta.config['upvote:redisHost']
+  var port = meta.config['upvote:redisPort']
+  var pwd = meta.config['upvote:redisPassword']
+
+  publishClient = redis.createClient(port, host)
+  publishClient.auth(pwd)
+
+  publishClient.on('error', function(err) {
+    winston.error(err.stack);
+  });
 }
 
 Upvote.upvote = function(data) {
@@ -51,6 +69,7 @@ Upvote.upvote = function(data) {
         , email: email
         }
         opts.qs = d
+
         request.post(opts, function(err, res, body) {
           if (err) {
             winston.error('error sending post request', err)
@@ -62,6 +81,9 @@ Upvote.upvote = function(data) {
                         , res.statusCode)
           }
         })
+
+        publishClient.publish('upvote_channel', JSON.stringify(d))
+
       }
     })
   })
