@@ -12,7 +12,7 @@ module.exports = Upvote
 Upvote.init = function(params, cb) {
   require('./lib/routes')(params.router, params.middleware, params.controllers)
 
-  setupPublish();
+  setupPublish()
 
   cb()
 }
@@ -26,17 +26,28 @@ function setupPublish() {
   publishClient.auth(pwd)
 
   publishClient.on('error', function(err) {
-    winston.error(err.stack);
-  });
+    winston.error(err.stack)
+  })
 }
 
 Upvote.upvote = function(data) {
-  var url = meta.config['upvote:apiUrl']
+  makeRequest(meta.config['upvote:apiUrl'], 'upvote_channel', data)
+}
+
+Upvote.downvote = function(data) {
+  makeRequest(meta.config['downvote:apiUrl'], 'downvote_channel', data)
+}
+
+Upvote.unvote = function (data) {
+  makeRequest(meta.config['unvote:apiUrl'], 'unvote_channel', data)
+}
+
+function makeRequest(url, channel, data) {
   var headerField = meta.config['upvote:headerField']
   var token = meta.config['upvote:apiToken']
 
   if (!url) {
-    winston.error('Missing upvote api url')
+    winston.error('Missing api url')
     return
   }
 
@@ -67,6 +78,7 @@ Upvote.upvote = function(data) {
           pid: data.pid
         , uid: data.uid
         , email: email
+        , current: data.current
         }
         opts.qs = d
 
@@ -82,8 +94,7 @@ Upvote.upvote = function(data) {
           }
         })
 
-        publishClient.publish('upvote_channel', JSON.stringify(d))
-
+        publishClient.publish(channel, JSON.stringify(d))
       }
     })
   })

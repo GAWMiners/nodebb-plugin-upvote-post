@@ -6,6 +6,8 @@
   "library": "./index.js",
   "hooks": [
     { "hook": "action:post.upvote", "method": "upvote" },
+    { "hook": "action:post.downvote", "method": "downvote" },
+    { "hook": "action:post.unvote", "method": "unvote" },
     { "hook": "filter:admin.header.build", "method": "addNavigation" },
     { "hook": "static:app.load", "method": "init" }
   ],

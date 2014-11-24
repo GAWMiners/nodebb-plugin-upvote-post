@@ -8,8 +8,20 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="form-group">
-          <label for="apiUrl">POST URL</label>
-          <input type="text" id="upvote:apiUrl" data-field="upvote:apiUrl" title="API URL" class="form-control" placeholder="API URL">
+          <label for="apiUrl">UPVOTE POST URL</label>
+          <input type="text" id="upvote:apiUrl" data-field="upvote:apiUrl" title="UPVOTE API URL" class="form-control" placeholder="UPVOTE API URL">
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <div class="form-group">
+          <label for="apiUrl">DOWNVOTE POST URL</label>
+          <input type="text" id="downvote:apiUrl" data-field="downvote:apiUrl" title="DOWNVOTE API URL" class="form-control" placeholder="DOWNVOTE API URL">
+        </div>
+      </div>
+       <div class="col-sm-12">
+        <div class="form-group">
+          <label for="apiUrl">UNVOTE POST URL</label>
+          <input type="text" id="unvote:apiUrl" data-field="unvote:apiUrl" title="UNVOTE API URL" class="form-control" placeholder="UNVOTE API URL">
         </div>
       </div>
       <div class="col-sm-12">
