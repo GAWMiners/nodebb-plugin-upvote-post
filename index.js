@@ -21,13 +21,14 @@ function setupPublish() {
   var host = meta.config['upvote:redisHost']
   var port = meta.config['upvote:redisPort']
   var pwd = meta.config['upvote:redisPassword']
+  if (host && port && pwd) {
+    publishClient = redis.createClient(port, host)
+    publishClient.auth(pwd)
 
-  publishClient = redis.createClient(port, host)
-  publishClient.auth(pwd)
-
-  publishClient.on('error', function(err) {
-    winston.error(err.stack)
-  })
+    publishClient.on('error', function(err) {
+      winston.error(err.stack)
+    })
+  }
 }
 
 Upvote.upvote = function(data) {
@@ -94,7 +95,9 @@ function makeRequest(url, channel, data) {
           }
         })
 
-        publishClient.publish(channel, JSON.stringify(d))
+        if (publishClient) {
+          publishClient.publish(channel, JSON.stringify(d))
+        }
       }
     })
   })
